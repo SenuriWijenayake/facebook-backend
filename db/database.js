@@ -1,8 +1,8 @@
 //Import the mongoose module
 var mongoose = require('mongoose');
 // var mongoDB = 'mongodb://admin:admin1234@ds125272.mlab.com:25272/gender';
-var mongoDB = 'mongodb://admin:admin1234@ds237072.mlab.com:37072/gender-new';
-//var mongoDB = 'mongodb://localhost:27017/study2';
+// var mongoDB = 'mongodb://admin:admin1234@ds237072.mlab.com:37072/gender-new';
+var mongoDB = 'mongodb://localhost:27017/study4';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
@@ -95,9 +95,9 @@ exports.saveUser = function(user) {
       genderSpecified: user.genderSpecified,
       age: user.age,
       education: user.education,
-      field: user.field,
+      educationSpecified: user.educationSpecified,
+      socialmedia: user.socialmedia,
       questionSet: user.questionSet,
-      mode: user.mode,
       qOrder : user.qOrder
     });
 

@@ -2,6 +2,17 @@ var logic = require('../code');
 var utils = require('../utils');
 
 var appRouter = function(app) {
+
+  //Endpoint to save user demographic data
+  app.post('/user', function(req, res) {
+    console.log("Request received at user data");
+    return new Promise(function(resolve, reject) {
+      logic.saveUserData(req.body).then(function(obj) {
+        resolve(res.status(200).send({"id" : obj.id, "order" : obj.qOrder}));
+      });
+    });
+  });
+
   app.post('/feedback', function(req, res) {
 
     console.log("Request received at feedback endpoint");
@@ -64,16 +75,6 @@ var appRouter = function(app) {
     console.log("Request received at big five");
     response = logic.processBigFive(req.body);
     res.status(200).send("<img src='http://blog.postable.com/wp-content/uploads/2017/07/TY_wedding_header.png' width='100%' height='100%'>");
-  });
-
-  //Endpoint to save user demographic data
-  app.post('/user', function(req, res) {
-    console.log("Request received at user data");
-    return new Promise(function(resolve, reject) {
-      logic.saveUserData(req.body).then(function(obj) {
-        resolve(res.status(200).send({"id" : obj.id, "order" : obj.qOrder}));
-      });
-    });
   });
 
   //Endpoint to save user chats
