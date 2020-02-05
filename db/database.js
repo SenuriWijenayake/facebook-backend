@@ -119,7 +119,7 @@ exports.saveAnswer = function(answer) {
       initRadioOpinion: answer.initRadioOpinion,
       initOpinion: answer.initOpinion
     });
-    
+
     newAnswer.save(function(err, newAnswer) {
       if (err) reject(err);
       resolve(newAnswer._id.toString());
@@ -134,8 +134,14 @@ exports.updateAnswer = function(answer) {
     questionId: answer.questionId
   };
   var newData = {
-    newAnswerId: answer.newAnswerId,
+    manipulationRadioOpinion: answer.manipulationRadioOpinion,
+    newRadioOpinion: answer.newRadioOpinion,
+    newOpinion: answer.newOpinion,
     newConfidence: answer.newConfidence,
+    like: answer.like,
+    comment: answer.comment,
+    share: answer.share,
+    report: answer.report,
     editTime: Date.now()
   };
 

@@ -46,6 +46,32 @@ var appRouter = function(app) {
     });
   });
 
+  //Endpoint to update answer
+  app.post('/updateAnswer', function(req, res) {
+    console.log("Request received at update answer");
+    var userAnswer = {};
+
+    userAnswer.userId = req.body.userId;
+    userAnswer.questionId = parseInt(req.body.questionId);
+
+    userAnswer.manipulationRadioOpinion = req.body.manipulationRadioOpinion;
+    userAnswer.newRadioOpinion = req.body.newRadioOpinion;
+    userAnswer.newOpinion = req.body.newOpinion;
+
+    userAnswer.newConfidence = parseInt(req.body.newConfidence);
+    userAnswer.like = parseInt(req.body.like);
+    userAnswer.comment = parseInt(req.body.comment);
+    userAnswer.share = parseInt(req.body.share);
+    userAnswer.report = parseInt(req.body.report);
+
+    return new Promise(function(resolve, reject) {
+      logic.updateAnswer(userAnswer).then(function(id) {
+        resolve(res.status(200).send(id));
+      });
+    });
+  });
+
+
   //Endpoint to get all the questions and answers
   app.get('/questions', function(req, res) {
     data = logic.getAllQuestions();
@@ -90,22 +116,6 @@ var appRouter = function(app) {
   });
 
 
-  //Endpoint to update answer
-  app.post('/updateAnswer', function(req, res) {
-    console.log("Request received at update answer");
-    var userAnswer = {};
-
-    userAnswer.userId = req.body.userId;
-    userAnswer.questionId = parseInt(req.body.questionId);
-    userAnswer.newAnswerId = parseInt(req.body.answerId);
-    userAnswer.newConfidence = parseFloat(req.body.confidence);
-
-    return new Promise(function(resolve, reject) {
-      logic.updateAnswer(userAnswer).then(function(id) {
-        resolve(res.status(200).send(id));
-      });
-    });
-  });
 
   app.post('/chat', function(req, res) {
     console.log(req.body);
