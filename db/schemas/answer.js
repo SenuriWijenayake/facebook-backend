@@ -5,14 +5,15 @@ var Schema = mongoose.Schema;
 var answerSchema = new Schema({
   userId : String,
   questionId: Number,
-  oldAnswerId : Number,
-  oldConfidence : Number,
-  newAnswerId : Number,
-  newConfidence : Number,
   questionSet : String,
+  initConfidence : Number,
+  initRadioOpinion : String,
+  initOpinion : String,
+  newConfidence : { type : Number, required: false },
+  newRadioOpinion : { type : String, required: false },
+  newOpinion : { type : String, required: false },
   submitTime : { type : Date, required: false, default: Date.now },
-  editTime : { type : Date, required: false, default: Date.now },
-  femaleFirst : { type : Boolean, required: false}
+  editTime : { type : Date, required: false, default: Date.now }
 });
 
 var Answer = mongoose.model('Answer', answerSchema);

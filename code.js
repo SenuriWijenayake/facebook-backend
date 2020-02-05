@@ -443,19 +443,9 @@ exports.saveUserChat = function(userId, chats) {
 
 //Function to save an answer
 exports.saveAnswer = function(ans) {
-  var answer = {};
-  answer.userId = ans.userId;
-  answer.questionId = ans.questionId;
-  answer.oldAnswerId = ans.answerId;
-  answer.oldConfidence = ans.confidence;
-  answer.newAnswerId = ans.answerId;
-  answer.newConfidence = ans.confidence;
-  answer.questionSet = ans.questionSet;
-
-  console.log(answer);
-
+  console.log(ans);
   return new Promise(function(resolve, reject) {
-    db.saveAnswer(answer).then(function(answerId) {
+    db.saveAnswer(ans).then(function(answerId) {
       resolve(answerId);
     });
   });

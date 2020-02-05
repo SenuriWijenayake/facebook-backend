@@ -114,13 +114,12 @@ exports.saveAnswer = function(answer) {
     var newAnswer = new Answer({
       userId: answer.userId,
       questionId: answer.questionId,
-      oldAnswerId: answer.oldAnswerId,
-      oldConfidence: answer.oldConfidence,
-      newAnswerId: answer.newAnswerId ? answer.newAnswerId : answer.oldAnswerId,
-      newConfidence: answer.newConfidence ? answer.newConfidence : answer.oldConfidence,
-      questionSet: answer.questionSet
+      questionSet: answer.questionSet,
+      initConfidence: answer.initConfidence,
+      initRadioOpinion: answer.initRadioOpinion,
+      initOpinion: answer.initOpinion
     });
-
+    
     newAnswer.save(function(err, newAnswer) {
       if (err) reject(err);
       resolve(newAnswer._id.toString());
