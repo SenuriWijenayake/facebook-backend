@@ -35,9 +35,9 @@ var appRouter = function(app) {
     userAnswer.questionId = parseInt(req.body.questionId);
     userAnswer.questionSet = req.body.questionSet;
 
-    userAnswer.initConfidence = parseInt(req.body.initialConfidence);
-    userAnswer.initRadioOpinion = req.body.initialRadioOpinion;
-    userAnswer.initOpinion = req.body.initialOpinion;
+    userAnswer.initialOpinion = parseInt(req.body.initialOpinion);
+    userAnswer.initialConfidence = parseInt(req.body.initialConfidence);
+    userAnswer.initialTextOpinion = req.body.initialTextOpinion;
 
     return new Promise(function(resolve, reject) {
       logic.saveAnswer(userAnswer).then(function(id) {
@@ -55,10 +55,10 @@ var appRouter = function(app) {
     userAnswer.questionId = parseInt(req.body.questionId);
 
     userAnswer.manipulationRadioOpinion = req.body.manipulationRadioOpinion;
-    userAnswer.newRadioOpinion = req.body.newRadioOpinion;
-    userAnswer.newOpinion = req.body.newOpinion;
-
+    userAnswer.newOpinion = parseInt(req.body.newOpinion);
     userAnswer.newConfidence = parseInt(req.body.newConfidence);
+    userAnswer.newTextOpinion = req.body.newTextOpinion;
+
     userAnswer.like = parseInt(req.body.like);
     userAnswer.comment = parseInt(req.body.comment);
     userAnswer.share = parseInt(req.body.share);

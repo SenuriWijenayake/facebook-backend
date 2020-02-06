@@ -115,9 +115,9 @@ exports.saveAnswer = function(answer) {
       userId: answer.userId,
       questionId: answer.questionId,
       questionSet: answer.questionSet,
-      initConfidence: answer.initConfidence,
-      initRadioOpinion: answer.initRadioOpinion,
-      initOpinion: answer.initOpinion
+      initialOpinion: answer.initialOpinion,
+      initialConfidence: answer.initialConfidence,
+      initialTextOpinion: answer.initialTextOpinion
     });
 
     newAnswer.save(function(err, newAnswer) {
@@ -135,9 +135,9 @@ exports.updateAnswer = function(answer) {
   };
   var newData = {
     manipulationRadioOpinion: answer.manipulationRadioOpinion,
-    newRadioOpinion: answer.newRadioOpinion,
     newOpinion: answer.newOpinion,
     newConfidence: answer.newConfidence,
+    newTextOpinion: answer.newTextOpinion,
     like: answer.like,
     comment: answer.comment,
     share: answer.share,
