@@ -10,6 +10,7 @@ var answerSchema = new Schema({
   initialOpinion: Number,
   initialConfidence: Number,
   initialTextOpinion: String,
+  initialFamiliarity: Number,
 
   manipulationRadioOpinion: { type : String, required: false },
   newOpinion : { type : Number, required: false },

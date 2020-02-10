@@ -117,6 +117,7 @@ exports.saveAnswer = function(answer) {
       questionSet: answer.questionSet,
       initialOpinion: answer.initialOpinion,
       initialConfidence: answer.initialConfidence,
+      initialFamiliarity: answer.initialFamiliarity,
       initialTextOpinion: answer.initialTextOpinion
     });
 

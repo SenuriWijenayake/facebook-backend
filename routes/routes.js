@@ -38,6 +38,7 @@ var appRouter = function(app) {
     userAnswer.initialOpinion = parseInt(req.body.initialOpinion);
     userAnswer.initialConfidence = parseInt(req.body.initialConfidence);
     userAnswer.initialTextOpinion = req.body.initialTextOpinion;
+    userAnswer.initialFamiliarity = parseInt(req.body.initialFamiliarity);
 
     return new Promise(function(resolve, reject) {
       logic.saveAnswer(userAnswer).then(function(id) {
