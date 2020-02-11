@@ -42,9 +42,6 @@ exports.getQuestionBySetAndId = function(set, id) {
   if (set == "2") {
     questions = utils.questionsTwo;
   }
-  if (set == "3") {
-    questions = utils.questionsThree;
-  }
   for (var i = 0; i < questions.length; i++) {
     if (questions[i].questionNumber == id) {
       return (questions[i]);
