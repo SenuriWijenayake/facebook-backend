@@ -15,25 +15,6 @@ var BigFiveRaw = require('./schemas/bigFiveRaw');
 var Chat = require('./schemas/chat');
 var bigFiveQuestions = require('./bigFiveQuestions');
 
-
-//Function to save the chat of the user
-exports.saveRawChat = function(userId, chat) {
-  return new Promise(function(resolve, reject) {
-
-    console.log("Inside the database function");
-    var myChat = new Chat({
-      userId: userId,
-      chat: chat
-    });
-
-    myChat.save(function(err) {
-      if (err) throw err;
-      resolve('Chat messages for' + userId.toString() + 'were saved successfully');
-    });
-  });
-
-};
-
 //Function to save the saw big five results to the database
 exports.saveBigFiveRaw = function(userId, results) {
   var result = new BigFiveRaw({
@@ -64,29 +45,6 @@ exports.saveBigFiveResults = function(userId, results) {
   });
 };
 
-//Function to update an answer with seed
-exports.updateAnswerWithSeed = function(answer,seed) {
-  var bool = true;
-  if (seed == 2){
-    bool = false
-  }
-  var query = {
-    userId: answer.userId,
-    questionId: answer.questionId
-  };
-  var newData = {
-    femaleFirst: bool
-  };
-
-  Answer.findOneAndUpdate(query, newData, {
-    upsert: true
-  }, function(err, doc) {
-    if (err) reject(err);
-    console.log("Seed saved");
-  });
-
-};
-
 //Function to save user details
 exports.saveUser = function(user) {
   return new Promise(function(resolve, reject) {
@@ -98,7 +56,7 @@ exports.saveUser = function(user) {
       educationSpecified: user.educationSpecified,
       socialmedia: user.socialmedia,
       questionSet: user.questionSet,
-      qOrder : user.qOrder
+      qOrder: user.qOrder
     });
 
     newUser.save(function(err, newUser) {
@@ -159,6 +117,17 @@ exports.updateAnswer = function(answer) {
 //Function to get the big five questions
 exports.getBigFiveQuestions = function() {
   return (bigFiveQuestions);
+};
+
+//Function to get answers of a given user
+exports.getAllAnswersByUser = function(userId) {
+  return new Promise(function(resolve, reject) {
+    Answer.find({
+      userId: userId
+    }, function(err, docs) {
+      resolve(docs);
+    });
+  });
 };
 
 //Bind connection to error event (to get notification of connection errors)

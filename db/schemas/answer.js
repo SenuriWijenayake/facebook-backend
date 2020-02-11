@@ -12,7 +12,7 @@ var answerSchema = new Schema({
   initialTextOpinion: String,
   initialFamiliarity: Number,
 
-  manipulationRadioOpinion: { type : String, required: false },
+  manipulationRadioOpinion: { type : Number, required: false },
   newOpinion : { type : Number, required: false },
   newConfidence : { type : Number, required: false },
   newTextOpinion: { type : String, required: false },
