@@ -1,3 +1,4 @@
+//1 = supportive and 0 = critical
 module.exports = [
   {
     "questionNumber": -1,
