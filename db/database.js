@@ -130,5 +130,24 @@ exports.getAllAnswersByUser = function(userId) {
   });
 };
 
+//Function to add code to the user
+exports.addCodeToUser = function(userId, code) {
+  var query = {
+    _id: mongoose.Types.ObjectId(userId)
+  };
+  var newData = {
+    code : code
+  };
+
+  return new Promise(function(resolve, reject) {
+    User.findOneAndUpdate(query, newData, {
+      upsert: true
+    }, function(err, newAnswer) {
+      if (err) reject(err);
+      resolve(newAnswer._id.toString());
+    });
+  });
+};
+
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

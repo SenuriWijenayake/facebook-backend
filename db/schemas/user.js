@@ -11,7 +11,8 @@ var userSchema = new Schema({
   genderSpecified : {type : String, required: false},
   educationSpecified : {type : String, required: false},
   questionSet : String,
-  qOrder : {type : Array}
+  qOrder : {type : Array},
+  code : {type : String, required: false}
 });
 
 var Result = mongoose.model('User', userSchema);

@@ -122,6 +122,7 @@ exports.updateAnswer = function(answer) {
 exports.getVerificationCode = function(userId){
   return new Promise(function(resolve, reject) {
     db.getAllAnswersByUser(userId).then(function(docs) {
+      var code;
       var incorrectCount = 0;
       for (var i = 0; i < docs.length; i++) {
         var qNumber = docs[i].questionId;
@@ -133,10 +134,15 @@ exports.getVerificationCode = function(userId){
         }
       }
       if (incorrectCount > 5){
-        resolve(userId + "_" + Date.now() + "_" + "F" + incorrectCount + "_" + (28-incorrectCount));
+        code = userId + "_" + Date.now() + "_" + "F" + incorrectCount + "_" + (28-incorrectCount);
       } else {
-        resolve(userId + "_" + Date.now() + "_" + "P" + incorrectCount + "_" + (28-incorrectCount));
+        code = userId + "_" + Date.now() + "_" + "P" + incorrectCount + "_" + (28-incorrectCount)
       }
+      console.log(code);
+      //Add the code to the user profile
+      db.addCodeToUser(userId, code).then(function(id) {
+        resolve(code);
+      });
     });
   });
 };
