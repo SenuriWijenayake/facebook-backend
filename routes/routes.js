@@ -102,7 +102,7 @@ var appRouter = function(app) {
       logic.getVerificationCode(userId).then(function(code) {
         logic.processBigFive(req.body);
         console.log(code);
-        resolve(res.status(200).send("<h2 style='padding:20px; text-align:center;'> Thank you for your participation! <br> <br> Please use the following code to claim your reward. <br/><br/>Your code is " + code + "</h2>"));
+        resolve(res.status(200).send("<h2 style='padding:20px; text-align:center;'> Thank you for your participation! <br> <br> Please use the following code to claim your reward. <br/><br/>Your code is<br/><p style='color:red;font-size:35px;'>" + code + "</p></h2>"));
       })
     });
   });
